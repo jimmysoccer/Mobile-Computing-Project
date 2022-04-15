@@ -1,0 +1,3 @@
+可选services：开灯（输入pin位置），关灯（输入pin位置），闪烁（输入pin位置，输入持续时间）。 温度（输入pin位置）（返回string）， 湿度（输入pin位置）（返回string）。
+检查开关转态（输入pin位置）（输出状态， true or false）。
+
