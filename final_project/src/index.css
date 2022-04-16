@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  color:blueviolet;
+  background-color: chartreuse;
+}
+
+.text{
+  color:blueviolet;
+  background-color: cornsilk;
+}
+
+h1{
+  color:cornflowerblue;
+  text-emphasis: big;
+  text-align: center;
+}
+h2{
+  font-weight: 500;
+  color: #3498DB;
+  text-align: center;
+}
+.tabBar{
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+}
+.tabBar view{
+  margin: 10Px;
+  height: 50px;
+  width: 100px;
+  border: 2px solid lightblue;
+  background-color: lightblue;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  line-height: 50px;
+  text-align: center;
+}
+.tabBar view.clicked{
+  color: cornflowerblue;
+  font-weight: 600;
+}
+.commandMenu{
+  display: flex;
+  justify-content: center;
+}
+.commandMenu view{
+  margin: 10px;
+  padding: 5px;
+  color: #3498DB;
+  background-color: aliceblue;
+  cursor: pointer;
+}
+.statusBar{
+  border: 2px solid red;
+  border-radius: 5px;
+  color: #F4D03F;
+  width: 20%;
+  height: 40px;
+  line-height: 40px;
+  font-weight: 500;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+.itemCard{
+  width: 40%;
+  margin: auto;
+  display: flex;
+  background-color: aliceblue;
+}
+.itemCard view{
+  width: 25%;
+  text-align: center;
+  border: 1px solid lightblue;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.selectCard{
+  width: 40%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+.selectCard view{
+  width: 50%;
+  text-align: center;
+  border: 2px solid lightskyblue;
+  margin: 5px;
+}
+.selectCard select{
+  width: 50%;
+  margin: 5px;
+}
+.selectCard input{
+  width: 50%;
+  margin: 5px;
+}
+.disappear{
+  display: none;
+}
