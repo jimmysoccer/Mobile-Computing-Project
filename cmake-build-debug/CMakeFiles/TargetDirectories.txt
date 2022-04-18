@@ -1,3 +1,0 @@
-C:/Users/38658/CLionProjects/Mobile-Computing-Project/cmake-build-debug/CMakeFiles/Mobile_Computing_Project.dir
-C:/Users/38658/CLionProjects/Mobile-Computing-Project/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/38658/CLionProjects/Mobile-Computing-Project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
