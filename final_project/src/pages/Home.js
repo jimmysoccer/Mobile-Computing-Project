@@ -2,17 +2,6 @@ import { useState,useEffect } from "react";
 import '../index.css';
 import {reactLocalStorage} from 'reactjs-localstorage';
 
-function Example() {
-    /*
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "http://100.64.11.225:8080/bpm/");
-    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    xhttp.send(1);
-    console.log(xhttp)
-    const [calculation,setCalculation]=useState(1);
-    */
-  }
-
 const Home = () => {
     const [statusTitle,setStatusTitle]=useState('waitting for command')
 
@@ -28,6 +17,12 @@ const Home = () => {
         }, 2000);
         setStatusTitle('connecting...')
         document.getElementById('statusBar').style.setProperty('color','#F4D03F ')
+        
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "http://100.64.11.225:8080/getStatus");
+        xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhttp.send();
+        console.log(xhttp)
     }
     function disconnect(){
         setStatusTitle('disconnected')
@@ -57,9 +52,6 @@ const Home = () => {
         <h1>Home</h1>
         <div className="commandMenu">
             <view onClick={()=>{connect()}}>Connect</view>
-            <view onClick={()=>{disconnect()}}>Disconnect</view>
-            <view onClick={()=>{pauseConnection()}}>Pause connection</view>
-            <view onClick={()=>{resumeConnection()}}>Resume connection</view>
         </div>
         <div id='statusBar' className="statusBar">
             {statusTitle}

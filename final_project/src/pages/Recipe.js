@@ -9,6 +9,7 @@ const Recipes = () => {
     const [relationship,setRelationship]=useState('Control')
     const [serviceNumIndex,setServiceNumIndex]=useState(0)
     const serviceNum = [1,2]
+    const [appName,setAppName]=useState('')
 
     /*
         thing identity, service, thing language, relationship, entity identity.
@@ -25,6 +26,21 @@ const Recipes = () => {
         xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhttp.send(thingId,service,language,relationship,entityId);
         console.log(xhttp)
+    }
+
+    function clear(){
+        document.getElementById('serviceNum').value = 0
+        document.getElementById('serviceIndex11').value = 0
+        document.getElementById('serviceIndex21').value = 0
+        document.getElementById('serviceIndex22').value = 0
+        document.getElementById('serviceRelationship').value = ''
+        document.getElementById('appName').value = ''
+
+        setServiceNumIndex(0)
+        setServiceA(JSON.parse(reactLocalStorage.get('serviceName'))[0])
+        setServiceB(JSON.parse(reactLocalStorage.get('serviceName'))[0])
+        setRelationship('Control')
+        setAppName('')
     }
 
     return (
@@ -44,6 +60,14 @@ const Recipes = () => {
                         })
                     }
                 </select>
+            </div>
+
+            <div className="selectCard">
+                <view>type you app name</view>
+                <input id="appName" value={appName} onChange={(e)=>{
+                    console.log('input value',e.target.value)
+                    setAppName(e.target.value)
+                }}></input>
             </div>
 
             <div className={serviceNumIndex==0?"selectCard":'disappear'}>
@@ -97,8 +121,6 @@ const Recipes = () => {
                 }}>
                     <option value={'control'}>Control</option>
                     <option value={'drive'}>Drive</option>
-                    <option value={'support'}>Support</option>
-                    <option value={'extent'}>Extent</option>
                 </select>
             </div>
                 :
@@ -113,32 +135,26 @@ const Recipes = () => {
                         serviceA: serviceA,
                         serviceB: 'N/A',
                         relationship: 'N/A',
-                        status: 'Not Activated'
+                        status: 'Not Activated',
+                        appName: appName
                     }
                 }else{
                     data={
                         serviceA: serviceA,
                         serviceB: serviceB,
                         relationship: relationship,
-                        status: 'Not Activated'
+                        status: 'Not Activated',
+                        appName: appName
                     }
                 }
                 list.push(data)
                 reactLocalStorage.set('app',JSON.stringify(list))
                 console.log('recipe',list)
                 sendService()
+                clear()
             }} >Finalize</button>
             <button style={{'width':'50%','margin':'auto'}} onClick={()=>{
-                document.getElementById('serviceNum').value = 0
-                document.getElementById('serviceIndex11').value = 0
-                document.getElementById('serviceIndex21').value = 0
-                document.getElementById('serviceIndex22').value = 0
-                document.getElementById('serviceRelationship').value = ''
-
-                setServiceNumIndex(0)
-                setServiceA(JSON.parse(reactLocalStorage.get('serviceName'))[0])
-                setServiceB(JSON.parse(reactLocalStorage.get('serviceName'))[0])
-                setRelationship('Control')
+                clear()
             }} >
                 clear
             </button>

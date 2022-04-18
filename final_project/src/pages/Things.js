@@ -1,16 +1,30 @@
-import { useEffect } from "react/cjs/react.production.min";
 import '../index.css'
+import { useState,useEffect } from "react";
 
 const Things = () => {
 
-    function getPi(){
-
+    function getThingId(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "http://192.168.0.28:8080/getThingID");
+        xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhttp.send();
+        console.log(xhttp)
     }
-    /*
-    useEffect(()=>{
-        getPi()
-    },[])
-    */
+
+    function getIpAddress(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "http://192.168.0.28:8080/getIPAddr");
+        xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhttp.send();
+        console.log(xhttp)
+    }
+
+    useEffect(() => {
+        console.log('things tab')
+      getThingId()
+      getIpAddress()
+    }, [])
+    
 
     function RpiFilter(){
         return(

@@ -18,14 +18,6 @@ const Relationships = () => {
                     <view style={{'width':'50%'}}>Drive</view>
                     <view style={{'width':'50%'}}>Use A todo B</view>
                 </div>
-                <div className="itemCard">
-                    <view style={{'width':'50%'}}>Contest</view>
-                    <view style={{'width':'50%'}}>A or B</view>
-                </div>
-                <div className="itemCard">
-                    <view style={{'width':'50%'}}>Subsume</view>
-                    <view style={{'width':'50%'}}>A includes B</view>
-                </div>
             </>
         )
     }
