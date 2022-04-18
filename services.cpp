@@ -7,65 +7,45 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#define ledPin 17
+#define buttonPin 27
+#define temPin 22
+
 using namespace std;
 
-///LED on, off, blink, check status.
-class led {
+class services {
 private:
-    int pin = -1;
     bool currentStatus;
+    int dht11_dat[5] = { 0, 0, 0, 0, 0 };
 public:
-    led(int pin) {
-        this->pin = pin;
+    services() {
         currentStatus = false;
     }
 
-    void start() {
-        pinMode( pin, OUTPUT );
-        digitalWrite(pin, HIGH);
+    void led_start() {
+        pinMode( ledPin, OUTPUT );
+        digitalWrite(ledPin, HIGH);
         currentStatus = true;
     }
 
-    void stop() {
-        pinMode( pin, OUTPUT );
-        digitalWrite(pin, LOW);
+    void led_stop() {
+        pinMode( ledPin, OUTPUT );
+        digitalWrite(ledPin, LOW);
         currentStatus = false;
     }
 
-    void blink(int sleep_time) { //button needs to declare pinMode, it needs a while loop to check status.
-        digitalWrite(pin, HIGH);
-        std::this_thread::sleep_for(std::chrono::seconds(sleep_time));
-        digitalWrite(pin, LOW);
+    void led_blink() { //button needs to declare pinMode, it needs a while loop to check status.
+        while(true) {
+            digitalWrite(ledPin, HIGH);
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            digitalWrite(ledPin, LOW);
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+        }
+        currentStatus = true;
     }
 
-    bool status() { return currentStatus; }
+    bool led_status() { return currentStatus; }
 
-};
-
-///check button status.
-//button needs to declare pinMode, it needs a while loop to check status.
-class button_detection {
-private:
-    int pin = -1;
-public:
-    button_detection(int pin) {
-        this->pin = pin;
-    }
-    bool is_taped() {
-        if(digitalRead(pin) == HIGH) return true;
-        return false;
-    }
-};
-
-///check temperature.
-class tem_detection {
-private:
-    int pin = -1;
-    int dht11_dat[5] = { 0, 0, 0, 0, 0 };
-public:
-    tem_detection(int pin) {
-        this->pin = pin;
-    }
     std::string check_tem() {
         uint8_t laststate	= HIGH;
         uint8_t counter		= 0;
@@ -74,17 +54,17 @@ public:
 
         dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
 
-        pinMode( pin, OUTPUT );
-        digitalWrite( pin, LOW );
+        pinMode( temPin, OUTPUT );
+        digitalWrite( temPin, LOW );
         delay( 18 );
-        digitalWrite( pin, HIGH );
+        digitalWrite( temPin, HIGH );
         delayMicroseconds( 40 );
-        pinMode( pin, INPUT );
+        pinMode( temPin, INPUT );
 
         for ( i = 0; i < 85; i++ ) ///max timing
         {
             counter = 0;
-            while ( digitalRead( pin ) == laststate )
+            while ( digitalRead( temPin ) == laststate )
             {
                 counter++;
                 delayMicroseconds( 1 );
@@ -93,7 +73,7 @@ public:
                     break;
                 }
             }
-            laststate = digitalRead( pin );
+            laststate = digitalRead( temPin );
 
             if ( counter == 255 )
                 break;
@@ -124,17 +104,17 @@ public:
 
         dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
 
-        pinMode( DHTPIN, OUTPUT );
-        digitalWrite( DHTPIN, LOW );
+        pinMode( temPin, OUTPUT );
+        digitalWrite( temPin, LOW );
         delay( 18 );
-        digitalWrite( DHTPIN, HIGH );
+        digitalWrite( temPin, HIGH );
         delayMicroseconds( 40 );
-        pinMode( DHTPIN, INPUT );
+        pinMode( temPin, INPUT );
 
-        for ( i = 0; i < MAXTIMINGS; i++ )
+        for ( i = 0; i < 85; i++ )
         {
             counter = 0;
-            while ( digitalRead( DHTPIN ) == laststate )
+            while ( digitalRead( temPin ) == laststate )
             {
                 counter++;
                 delayMicroseconds( 1 );
@@ -143,7 +123,7 @@ public:
                     break;
                 }
             }
-            laststate = digitalRead( DHTPIN );
+            laststate = digitalRead( temPin );
 
             if ( counter == 255 )
                 break;
@@ -161,9 +141,19 @@ public:
              (dht11_dat[4] == ( (dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF) ) )
         {
             f = dht11_dat[2] * 9. / 5. + 32;
-                return std::to_string(dht11_dat[0]) + "." + std::to_string(dht11_dat[1]) + "\n";
+            return std::to_string(dht11_dat[0]) + "." + std::to_string(dht11_dat[1]) + "\n";
         }
         return "Data not good, skip\n";
     }
+
+    bool is_taped() {
+        pinMode(buttonPin, INPUT);
+        while(true) {
+            if(digitalRead(buttonPin) == HIGH) return true;
+        }
+        return false;
+    }
+
 };
+
 

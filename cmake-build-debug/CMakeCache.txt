@@ -253,6 +253,9 @@ Mobile_Computing_Project_BINARY_DIR:STATIC=C:/Users/38658/CLionProjects/Mobile-C
 //Value Computed by CMake
 Mobile_Computing_Project_SOURCE_DIR:STATIC=C:/Users/38658/CLionProjects/Mobile-Computing-Project
 
+//The directory containing a CMake configuration file for cpprestsdk.
+cpprestsdk_DIR:PATH=cpprestsdk_DIR-NOTFOUND
+
 
 ########################
 # INTERNAL cache entries
