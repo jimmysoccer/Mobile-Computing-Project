@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import '../index.css';
+import {reactLocalStorage} from 'reactjs-localstorage';
 
 function Example() {
     /*
@@ -15,10 +16,18 @@ function Example() {
 const Home = () => {
     const [statusTitle,setStatusTitle]=useState('waitting for command')
 
-    function connect(){
+    useEffect(()=>{
+        reactLocalStorage.set('app',JSON.stringify([]))
+        console.log('initiate',JSON.parse(reactLocalStorage.get('app')))
+    },[])
 
-        setStatusTitle('connected')
-        document.getElementById('statusBar').style.setProperty('color','#2ECC71 ')
+    function connect(){
+        setTimeout(() => {
+            document.getElementById('statusBar').style.setProperty('color','#2ECC71 ')
+            setStatusTitle('connected')
+        }, 2000);
+        setStatusTitle('connecting...')
+        document.getElementById('statusBar').style.setProperty('color','#F4D03F ')
     }
     function disconnect(){
         setStatusTitle('disconnected')
@@ -31,7 +40,17 @@ const Home = () => {
     function resumeConnection(){
         setStatusTitle('connection is resumed')
         document.getElementById('statusBar').style.setProperty('color','#2ECC71 ')
+        let data = [{
+            id: 1,
+            name: 'thing 1'
+        },{
+            id:2,
+            name: 'thing 2'
+        }]
+        reactLocalStorage.set('thingId',JSON.stringify(data))
     }
+
+    
 
   return (
       <>
@@ -45,7 +64,8 @@ const Home = () => {
         <div id='statusBar' className="statusBar">
             {statusTitle}
         </div>
-      </>);
+      </>
+    );
 };
 
 export default Home;

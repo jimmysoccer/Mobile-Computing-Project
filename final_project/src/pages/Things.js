@@ -2,6 +2,7 @@ import { useEffect } from "react/cjs/react.production.min";
 import '../index.css'
 
 const Things = () => {
+
     function getPi(){
 
     }
@@ -23,35 +24,14 @@ const Things = () => {
     }
     function RpiCard(){
         return(
-            <div className="itemCard">
-                <view>{1}</view>
-                <view>{123}</view>
-                <view>{192.168}</view>
-                <view>{8080}</view>
-            </div>
-        )
-    }
-    
-    function EntityFIlter(){
-        return(
-            <div className="itemCard">
-                <view>Space ID</view>
-                <view>Thing ID</view>
-                <view>Entity ID</view>
-                <view>Name</view>
-                <view>Description</view>
-            </div>
-        )
-    }
-    function EntityCard(){
-        return(
-            <div className="itemCard">
-                <view>{1}</view>
-                <view>{123}</view>
-                <view>{12}</view>
-                <view>LED</view>
-                <view>it's a red LED</view>
-            </div>
+            <>
+                <div className="itemCard">
+                    <view>1</view>
+                    <view>1</view>
+                    <view>100.64.15.41</view>
+                    <view>8080</view>
+                </div>
+            </>
         )
     }
 
@@ -63,11 +43,6 @@ const Things = () => {
                 <RpiFilter></RpiFilter>
             </div>
             <RpiCard></RpiCard>
-            <RpiCard></RpiCard>
-            <h2>Entity</h2>
-            <EntityFIlter></EntityFIlter>
-            <EntityCard></EntityCard>
-            <EntityCard></EntityCard>
         </>
     );
   };
