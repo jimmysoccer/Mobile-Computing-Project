@@ -43,7 +43,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 ### 1.Download the folders "flask" and "pi"
 ### 2.Change the codes about paths in "app.py" and "main.py" according to your machine
-### 3.Run them with the flask and python3.9 interperters respectively
+### 3.Run them with the flask and python3 interperters respectively
 
 ## Learn More
 
