@@ -41,9 +41,9 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 # How to run backend
 
-## Download the folders "flask" and "pi"
-## Change the codes about paths in "app.py" and "main.py" according to your machine
-## Run them with the flask and python3.9 interperters respectively
+### Download the folders "flask" and "pi"
+### Change the codes about paths in "app.py" and "main.py" according to your machine
+### Run them with the flask and python3.9 interperters respectively
 
 ## Learn More
 
